@@ -44,6 +44,31 @@
  */
 
 // @lc code=start
+
+// Leetcode Medium
+
+// Lower Upper Bound
+
+class Solution
+{
+public:
+    vector<int> searchRange(vector<int> &nums, int target)
+    {
+
+        int lower = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+        int upper = upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+
+        if (lower == upper)
+        {
+            return {-1, -1};
+        }
+        return {lower, upper - 1};
+    }
+};
+
+// traditional binary search
+
+/*
 class Solution
 {
 public:
@@ -91,4 +116,6 @@ private:
         return res;
     }
 };
+
+*/
 // @lc code=end
