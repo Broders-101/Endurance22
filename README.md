@@ -20,13 +20,8 @@ Weekly challenges:
 🐜  The participant with the least number of points in the week has to pay additional ₹10 to the pool . 
  
 
-Over arching challenges: 
 
-🍔 The participant with the most points earned in a single day will earn a T shirt at the expense of everyone else .(max price 600)
 
-🍔 The winner of the challenge will be the participant with the most points earned overall and will get Sneakers at the expense of everyone else (max price 1800).
-
-🧂The participant with the least points earned overall will have to do a dare.
 
 Miscellaneous Challenges:
 
