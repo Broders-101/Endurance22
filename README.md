@@ -1,7 +1,7 @@
 # Endurance22
 
-The motive of the contest is to promote DSA among the members of central perk-neuron .
-Every participant must complete some daily challenges to  achieve atleast  5 points on a daily basis . Failing to do so will result in a fine of ₹10 which will be added to the ENDURANCE  fund for future . The game will last untill we meet again .
+The motive of the contest is to promote DSA among the members .
+Every participant must complete some daily challenges to  achieve atleast  5 points on a daily basis . Failing to do so will result in a fine of ₹10 which will be added to the ENDURANCE fund for future . The game will last untill we meet again .
  
 
 Daily challenges : 
