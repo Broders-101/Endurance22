@@ -78,16 +78,32 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    ll health_char, health_mon, attack_char, attack_mon;
+    cin >> health_char >> attack_char >> health_mon >> attack_mon;
 
-    if (k <= (n + 1) / 2)
+    ll k, w, a;
+    cin >> k >> w >> a;
+
+    bool flag = false;
+
+    for (ll i = 0; i <= k; i++)
     {
-        cout << k * 2 - 1 << endl;
+        ll h = health_char + (k - i) * a;
+        ll d = attack_char + (i * w);
+
+        ll needed = (health_mon % d == 0) ? (health_mon / d) : (health_mon / d) + 1;
+        ll attack = (h % attack_mon == 0) ? (h / attack_mon) : (h / attack_mon) + 1;
+
+        if (needed <= attack)
+        {
+            cout << "YES" << endl;
+            flag = true;
+            break;
+        }
     }
-    else
+    if (!flag)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        cout << "NO" << endl;
     }
 }
 
@@ -95,8 +111,8 @@ int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

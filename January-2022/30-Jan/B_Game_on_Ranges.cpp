@@ -78,25 +78,44 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    if (k <= (n + 1) / 2)
+    int l[n], r[n];
+    map<pair<int, int>, int> m;
+    for (int i = 0; i < n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> l[i] >> r[i];
+        m[{l[i], r[i]}] = 1;
     }
-    else
+
+    for (int i = 0; i < n; i++)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        for (int j = l[i]; j <= r[i]; j++)
+        {
+            if (l[i] == r[i])
+            {
+                cout << l[i] << " " << r[i] << " " << j << endl;
+            }
+            if (m[{l[i], j - 1}] == 1 && m[{j + 1, r[i]}] == 1)
+            {
+                cout << l[i] << " " << r[i] << " " << j << endl;
+            }
+            if (j == l[i] && m[{j + 1, r[i]}] == 1 || j == r[i] && m[{l[i], j - 1}] == 1)
+            {
+                cout << l[i] << " " << r[i] << " " << j << endl;
+            }
+        }
     }
+    cout << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

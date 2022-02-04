@@ -78,16 +78,26 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    vector<int> vec(n);
 
-    if (k <= (n + 1) / 2)
+    for (int i = 0; i < n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> vec[i];
+    }
+
+    if (vec[0] != n && vec[n - 1] != n)
+    {
+        cout << -1 << endl;
     }
     else
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            cout << vec[i] << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -95,8 +105,8 @@ int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

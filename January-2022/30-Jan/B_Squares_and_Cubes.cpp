@@ -78,25 +78,28 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    set<int> s;
+    for (int i = 1; i * i <= n; i++)
+    {
+        s.insert(i * i);
+    }
 
-    if (k <= (n + 1) / 2)
+    for (int i = 1; i * i * i <= n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        s.insert(i * i * i);
     }
-    else
-    {
-        cout << (k - (n + 1) / 2) * 2 << endl;
-    }
+
+    cout << s.size() << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

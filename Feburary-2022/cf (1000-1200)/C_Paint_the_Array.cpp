@@ -78,25 +78,69 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    if (k <= (n + 1) / 2)
+    vector<ll> a(n);
+
+    for (int i = 0; i < n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> a[i];
     }
-    else
+
+    ll temp1 = 0, temp2 = 0;
+
+    for (int i = 0; i < n; i += 2)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        temp1 = __gcd(temp1, a[i]);
     }
+
+    for (int i = 1; i < n; i += 2)
+    {
+        temp2 = __gcd(temp2, a[i]);
+    }
+
+    bool flag = true;
+
+    for (int i = 0; i < n; i += 2)
+    {
+        if (a[i] % temp2 == 0)
+        {
+            flag = false;
+            break;
+        }
+    }
+
+    if (flag)
+    {
+        cout << temp2 << endl;
+        return;
+    }
+
+    flag = true;
+    for (int i = 1; i < n; i += 2)
+    {
+        if (a[i] % temp1 == 0)
+        {
+            flag = false;
+            break;
+        }
+    }
+
+    if (flag)
+    {
+        cout << temp1 << endl;
+        return;
+    }
+    cout << 0 << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

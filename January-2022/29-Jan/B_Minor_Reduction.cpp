@@ -78,16 +78,51 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    if (k <= (n + 1) / 2)
+    ll n = s.length();
+    string res = "";
+
+    for (ll i = n - 1; i > 0; i--)
     {
-        cout << k * 2 - 1 << endl;
+        int a = s[i] - '0';
+        int b = s[i - 1] - '0';
+
+        if (a + b > 9)
+        {
+            for (int j = 0; j < i - 1; j++)
+            {
+                cout << s[j];
+            }
+
+            cout << a + b;
+
+            for (int j = res.length() - 1; j >= 0; j--)
+            {
+                cout << res[j];
+            }
+            cout << endl;
+            return;
+        }
+        else
+        {
+            res += s[i];
+        }
+    }
+
+    if (n == 2)
+    {
+        int a = s[0] - '0';
+        int b = s[1] - '0';
+        cout << a + b << endl;
+        return;
     }
     else
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        int a = s[0] - '0';
+        int b = s[1] - '0';
+        cout << a + b << s.substr(2) << endl;
     }
 }
 
@@ -95,8 +130,8 @@ int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

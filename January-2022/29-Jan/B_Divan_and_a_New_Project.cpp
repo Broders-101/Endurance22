@@ -9,6 +9,7 @@ using namespace std;
 #define pb push_back
 typedef long long ll;
 typedef pair<int, int> pii;
+typedef pair<long, long> pll;
 const int MOD = 1000000007;
 const int N = 1e3 + 2;
 const int MAXN = 2e5 + 5;
@@ -78,25 +79,66 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    ll n;
+    cin >> n;
+    vector<pll> v(n);
 
-    if (k <= (n + 1) / 2)
+    for (int i = 0; i < n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        int x;
+        cin >> x;
+        v.pb({x, i});
     }
-    else
+
+    sort(v.rbegin(), v.rend());
+
+    vector<ll> ans(n);
+    int mid = (n + 2) / 2;
+    int left = mid - 1, right = mid + 1;
+    bool isLeft = 1;
+
+    ll res = 0;
+
+    for (int i = 0; i < n; i++)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        ll count = v[i].first;
+        ll index = v[i].second;
+
+        if (isLeft)
+        {
+            ans[index] = left;
+            ll cost = 2 * abs(left - mid);
+            res += count * cost;
+            isLeft = 0;
+            left--;
+        }
+        else
+        {
+            ans[index] = right;
+            ll cost = 2 * abs(right - mid);
+            res += count * cost;
+            isLeft = 1;
+            right++;
+        }
     }
+
+    cout << res << endl;
+
+    cout << mid << " ";
+
+    for (auto x : ans)
+    {
+        cout << x << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

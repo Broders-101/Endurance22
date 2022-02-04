@@ -78,25 +78,62 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    int p[n + 1], q[n + 1];
+    map<int, int> m;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> p[i];
+        q[i] = p[i];
+        m[p[i]] = i;
+    }
 
-    if (k <= (n + 1) / 2)
+    string s;
+    cin >> s;
+    vector<int> zeroes, ones;
+    for (int i = 0; i < s.length(); i++)
     {
-        cout << k * 2 - 1 << endl;
+        if (s[i] == '0')
+        {
+            zeroes.pb(p[i]);
+        }
+        else
+        {
+            ones.pb(p[i]);
+        }
     }
-    else
+
+    sort(zeroes.rbegin(), zeroes.rend());
+    sort(ones.rbegin(), ones.rend());
+
+    sort(p, p + n);
+    reverse(p, p + n);
+
+    int i;
+    for (i = 0; i < ones.size(); i++)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        q[m[ones[i]]] = p[i];
     }
+    for (int j = 0; j < zeroes.size(); j++)
+    {
+        q[m[zeroes[j]]] = p[i];
+        i++;
+    }
+
+    for (int hell = 0; hell < n; hell++)
+    {
+        cout << q[hell] << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

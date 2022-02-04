@@ -78,25 +78,43 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    string temp = s;
+    vector<ll> res;
+    sort(temp.begin(), temp.end());
 
-    if (k <= (n + 1) / 2)
+    if (s == temp)
     {
-        cout << k * 2 - 1 << endl;
+        cout << 0 << endl;
+        return;
     }
-    else
+
+    for (int i = 0; i < n; i++)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        if (s[i] != temp[i])
+        {
+            res.pb(i + 1);
+        }
     }
+
+    cout << 1 << endl;
+    cout << res.size() << " ";
+    for (int i = 0; i < res.size(); i++)
+    {
+        cout << res[i] << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -78,25 +78,46 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    vector<int> vec(n), hell(n + 1, false);
 
-    if (k <= (n + 1) / 2)
+    for (auto &v : vec)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> v;
     }
-    else
+
+    sort(vec.begin(), vec.end());
+
+    bool flag = true;
+
+    for (auto &i : vec)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        int x = i;
+        while (x > n || hell[x])
+        {
+            x /= 2;
+        }
+
+        if (x > 0)
+        {
+            hell[x] = true;
+        }
+        else
+        {
+            flag = false;
+        }
     }
+
+    cout << (flag ? "YES" : "NO") << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

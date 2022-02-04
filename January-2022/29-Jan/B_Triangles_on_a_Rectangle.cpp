@@ -78,25 +78,57 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
 
-    if (k <= (n + 1) / 2)
+    long long int w, h;
+    cin >> w >> h;
+
+    long long int k1, k2, k3, k4;
+
+    cin >> k1;
+    long long int a[k1];
+    for (int i = 0; i < k1; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> a[i];
     }
-    else
+
+    k1 = h * (a[k1 - 1] - a[0]);
+
+    cin >> k2;
+    long long int b[k2];
+    for (int i = 0; i < k2; i++)
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        cin >> b[i];
     }
+
+    k2 = h * (b[k2 - 1] - b[0]);
+
+    cin >> k3;
+    long long int c[k3];
+    for (int i = 0; i < k3; i++)
+    {
+        cin >> c[i];
+    }
+
+    k3 = w * (c[k3 - 1] - c[0]);
+
+    cin >> k4;
+    long long int d[k4];
+    for (int i = 0; i < k4; i++)
+    {
+        cin >> d[i];
+    }
+
+    k4 = w * (d[k4 - 1] - d[0]);
+
+    cout << max({k1, k2, k3, k4}) << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

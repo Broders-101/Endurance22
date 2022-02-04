@@ -78,25 +78,20 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    if (k <= (n + 1) / 2)
-    {
-        cout << k * 2 - 1 << endl;
-    }
-    else
-    {
-        cout << (k - (n + 1) / 2) * 2 << endl;
-    }
+    sort(s.begin(), s.end());
+
+    cout << s << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

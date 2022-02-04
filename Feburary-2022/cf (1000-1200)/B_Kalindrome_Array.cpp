@@ -76,18 +76,63 @@ int calc(int n)
     return res;
 }
 
+int n, m, a[MAXN], b[MAXN];
+
+bool flag;
+
+void check(int x)
+{
+    m = 0;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (a[i] != x)
+        {
+            b[++m] = a[i];
+        }
+    }
+
+    for (int i = 1; i <= m; i++)
+    {
+        if (b[i] != b[m - i + 1])
+        {
+            return;
+        }
+    }
+
+    flag = true;
+}
+
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    cin >> n;
 
-    if (k <= (n + 1) / 2)
+    for (int i = 1; i <= n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> a[i];
+    }
+
+    flag = true;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (a[i] != a[n + 1 - i])
+        {
+            flag = false;
+
+            check(a[i]);
+            check(a[n + 1 - i]);
+            break;
+        }
+    }
+
+    if (flag)
+    {
+        cout << "YES" << endl;
     }
     else
     {
-        cout << (k - (n + 1) / 2) * 2 << endl;
+        cout << "NO" << endl;
     }
 }
 
@@ -95,8 +140,8 @@ int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

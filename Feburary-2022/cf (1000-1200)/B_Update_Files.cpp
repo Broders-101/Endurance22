@@ -80,23 +80,27 @@ void solve()
 {
     ll n, k;
     cin >> n >> k;
+    ll ans = 0, curr = 1;
+    while (curr < k)
+    {
+        curr *= 2;
+        ans++;
+    }
 
-    if (k <= (n + 1) / 2)
+    if (curr < n)
     {
-        cout << k * 2 - 1 << endl;
+        ans += (n - curr + k - 1) / k;
     }
-    else
-    {
-        cout << (k - (n + 1) / 2) * 2 << endl;
-    }
+
+    cout << ans << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();

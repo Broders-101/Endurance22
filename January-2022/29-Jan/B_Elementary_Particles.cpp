@@ -78,25 +78,31 @@ int calc(int n)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
 
-    if (k <= (n + 1) / 2)
+    int n;
+    cin >> n;
+
+    map<int, int> m;
+    int res = -1;
+    int a;
+    for (int i = 1; i <= n; i++)
     {
-        cout << k * 2 - 1 << endl;
+        cin >> a;
+        if (m[a])
+        {
+            res = max(res, n - i + m[a]);
+        }
+        m[a] = i;
     }
-    else
-    {
-        cout << (k - (n + 1) / 2) * 2 << endl;
-    }
+    cout << res << endl;
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     while (t--)
     {
         solve();
