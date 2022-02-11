@@ -80,43 +80,28 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<ll> a(n);
-    map<ll, ll> m;
 
-    ll sum = 0;
-    for (auto &x : a)
+    int k = 0;
+
+    while ((1 << (k + 1)) <= n - 1)
     {
-        cin >> x;
-        sum += x;
-        m[x]++;
+        k++;
     }
 
-    if ((2 * sum) % n != 0)
+    // now we keep the numbers with the farthest bit set on one side and the number with the farthest bit
+    // unset on the other side so that the max Xor that can be calculated is n-1;
+
+    for (int i = (1 << k) - 1; i >= 0; i--)
     {
-        cout << 0 << endl;
-        return;
+        cout << i << " ";
     }
 
-    ll res = 0;
-
-    ll temp = (2 * sum) / n;
-
-    for (int i = 0; i < n; i++)
+    for (int i = (1 << k); i < n; i++)
     {
-        ll x = a[i];
-        ll y = temp - x;
-        if (m.count(y))
-        {
-            res += m[y];
-        }
-
-        if (x == y)
-        {
-            res--;
-        }
+        cout << i << " ";
     }
 
-    cout << res / 2 << endl;
+    cout << endl;
 }
 
 int32_t main()
@@ -132,43 +117,3 @@ int32_t main()
 
     return 0;
 }
-
-// using upper and lower bound
-
-/*
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-      cin >> a[i];
-      sum += a[i];
-    }
-    long long two_sum = (sum + sum) / n;
-    if (two_sum * n != sum + sum) {
-      cout << 0 << '\n';
-      continue;
-    }
-    sort(a.begin(), a.end());
-    long long ans = 0;
-    for (int i = 0; i < n - 1; i++) {
-      int x = two_sum - a[i];
-      int l = lower_bound(a.begin() + i + 1, a.end(), x) - a.begin();
-      if (l >= n || a[l] != x) continue;
-      int r = upper_bound(a.begin(), a.end(), x) - a.begin();
-      ans += r - l;
-    }
-    cout << ans << '\n';
-  }
-  return 0;
-}
-
-
-*/

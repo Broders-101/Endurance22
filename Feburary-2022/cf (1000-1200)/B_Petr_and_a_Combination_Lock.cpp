@@ -78,53 +78,55 @@ int calc(int n)
 
 void solve()
 {
+
     int n;
     cin >> n;
-    vector<ll> a(n);
-    map<ll, ll> m;
 
-    ll sum = 0;
-    for (auto &x : a)
-    {
-        cin >> x;
-        sum += x;
-        m[x]++;
-    }
-
-    if ((2 * sum) % n != 0)
-    {
-        cout << 0 << endl;
-        return;
-    }
-
-    ll res = 0;
-
-    ll temp = (2 * sum) / n;
-
+    int a[n + 1];
     for (int i = 0; i < n; i++)
     {
-        ll x = a[i];
-        ll y = temp - x;
-        if (m.count(y))
-        {
-            res += m[y];
-        }
+        cin >> a[i];
+    }
 
-        if (x == y)
+    bool flag = false;
+
+    for (int num = 0; num < (1 << n) - 1; num++)
+    {
+        int sum = 0;
+        for (int bits = 0; bits < n; bits++)
         {
-            res--;
+            if (num & (1 << bits))
+            {
+                sum += a[bits];
+            }
+            else
+            {
+                sum -= a[bits];
+            }
+        }
+        if (sum % 360 == 0)
+        {
+            flag = true;
+            break;
         }
     }
 
-    cout << res / 2 << endl;
+    if (flag)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
 }
 
 int32_t main()
 {
     fast_io;
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin >> t;
     while (t--)
     {
         solve();
@@ -132,43 +134,3 @@ int32_t main()
 
     return 0;
 }
-
-// using upper and lower bound
-
-/*
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-      cin >> a[i];
-      sum += a[i];
-    }
-    long long two_sum = (sum + sum) / n;
-    if (two_sum * n != sum + sum) {
-      cout << 0 << '\n';
-      continue;
-    }
-    sort(a.begin(), a.end());
-    long long ans = 0;
-    for (int i = 0; i < n - 1; i++) {
-      int x = two_sum - a[i];
-      int l = lower_bound(a.begin() + i + 1, a.end(), x) - a.begin();
-      if (l >= n || a[l] != x) continue;
-      int r = upper_bound(a.begin(), a.end(), x) - a.begin();
-      ans += r - l;
-    }
-    cout << ans << '\n';
-  }
-  return 0;
-}
-
-
-*/

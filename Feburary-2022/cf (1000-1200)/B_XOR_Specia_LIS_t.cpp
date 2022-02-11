@@ -80,43 +80,23 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<ll> a(n);
-    map<ll, ll> m;
+    bool flag = true;
+    vector<int> v(n + 1);
 
-    ll sum = 0;
-    for (auto &x : a)
+    for (int i = 1; i <= n; i++)
     {
-        cin >> x;
-        sum += x;
-        m[x]++;
+        cin >> v[i];
+        flag &= v[i] > v[i - 1];
     }
 
-    if ((2 * sum) % n != 0)
+    if (!(n & 1) || !flag)
     {
-        cout << 0 << endl;
-        return;
+        cout << "YES\n";
     }
-
-    ll res = 0;
-
-    ll temp = (2 * sum) / n;
-
-    for (int i = 0; i < n; i++)
+    else
     {
-        ll x = a[i];
-        ll y = temp - x;
-        if (m.count(y))
-        {
-            res += m[y];
-        }
-
-        if (x == y)
-        {
-            res--;
-        }
+        cout << "NO\n";
     }
-
-    cout << res / 2 << endl;
 }
 
 int32_t main()
@@ -132,43 +112,3 @@ int32_t main()
 
     return 0;
 }
-
-// using upper and lower bound
-
-/*
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-      cin >> a[i];
-      sum += a[i];
-    }
-    long long two_sum = (sum + sum) / n;
-    if (two_sum * n != sum + sum) {
-      cout << 0 << '\n';
-      continue;
-    }
-    sort(a.begin(), a.end());
-    long long ans = 0;
-    for (int i = 0; i < n - 1; i++) {
-      int x = two_sum - a[i];
-      int l = lower_bound(a.begin() + i + 1, a.end(), x) - a.begin();
-      if (l >= n || a[l] != x) continue;
-      int r = upper_bound(a.begin(), a.end(), x) - a.begin();
-      ans += r - l;
-    }
-    cout << ans << '\n';
-  }
-  return 0;
-}
-
-
-*/
